@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCoins } from '../context/CoinsContext';
 
 
 
@@ -8,13 +9,14 @@ const CoinTable = () => {
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState(' ');
   const [sortOrder, setSortOrder] = useState('desc');
-   const [coins, setCoins] = useState([]);
+  //  const [coins, setCoins] = useState([]);
+  const {coins}=useCoins();
   const handleSortToggle = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
   };
 
   const filteredData = coins
-    .filter((coin) =>
+    ?.filter((coin) =>
       coin.name.toLowerCase().includes(search.toLowerCase()) ||
       coin.symbol.toLowerCase().includes(search.toLowerCase())
     )
@@ -26,23 +28,23 @@ const CoinTable = () => {
 
 
 
-  useEffect(() => {
-    const fetchTopTenCoins = async () => {
-      try {
-        const res = await axios.get('https://cryptocoincode.onrender.com/api/coins');
-        console.log(res.data)
-        setCoins(res.data);
-      } catch (err) {
-        console.error('Error fetching top 10 coins:', err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchTopTenCoins = async () => {
+  //     try {
+  //       const res = await axios.get('https://cryptocoincode.onrender.com/api/coins');
+  //       console.log(res.data)
+  //       setCoins(res.data);
+  //     } catch (err) {
+  //       console.error('Error fetching top 10 coins:', err);
+  //     }
+  //   };
 
-    fetchTopTenCoins(); 
+  //   fetchTopTenCoins(); 
 
-    const interval = setInterval(fetchTopTenCoins, 30*60*1000); 
+  //   const interval = setInterval(fetchTopTenCoins, 5*60*1000); 
 
-    return () => clearInterval(interval); 
-  }, []);
+  //   return () => clearInterval(interval); 
+  // }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
