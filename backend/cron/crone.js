@@ -8,7 +8,7 @@ const startHistoryCron = () => {
     console.log('Running hourly history save...');
 
     try {
-      const res = await axios.post('http://localhost:8080/api/history');
+      const res = await axios.post('https://cryptocoincode.onrender.com/api/history');
       console.log(` History saved: ${res.data.count} coins`);
     } catch (error) {
       console.error(' Failed to save history:', error.message);

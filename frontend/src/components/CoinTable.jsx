@@ -28,9 +28,8 @@ const CoinTable = () => {
 
   useEffect(() => {
     const fetchTopTenCoins = async () => {
-        console.log("FFFFFFF")
       try {
-        const res = await axios.get('http://localhost:8080/api/coins');
+        const res = await axios.get('https://cryptocoincode.onrender.com/api/coins');
         console.log(res.data)
         setCoins(res.data);
       } catch (err) {

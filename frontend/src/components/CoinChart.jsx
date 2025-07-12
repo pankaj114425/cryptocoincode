@@ -19,7 +19,7 @@ const CoinChart = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/history/${coinId}`);
+        const res = await axios.get(`https://cryptocoincode.onrender.com/api/history/${coinId}`);
         setHistory(res.data);
       } catch (err) {
         console.error('Error fetching history:', err.message);
