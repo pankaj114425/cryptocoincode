@@ -39,7 +39,7 @@ const CoinTable = () => {
 
     fetchTopTenCoins(); 
 
-    const interval = setInterval(fetchTopTenCoins, 5*60*1000); 
+    const interval = setInterval(fetchTopTenCoins, 30*60*1000); 
 
     return () => clearInterval(interval); 
   }, []);
