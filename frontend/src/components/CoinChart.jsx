@@ -38,7 +38,7 @@ const CoinChart = () => {
     <div className='min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-200'>
     <Header/>
      <div className="max-w-5xl mt-10 mx-auto px-4 py-8 bg-white rounded-xl shadow-lg">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center text-indigo-700 mb-6">
+      <h2 className="text-base sm:text-3xl font-bold text-center text-indigo-700 mb-6">
         📈 Price History of {coinId.charAt(0).toUpperCase() + coinId.slice(1)}
       </h2>
 

@@ -6,7 +6,7 @@ import Header from "../components/Header"
 const Home=()=>{
 
   return (
-  <div className="min-h-screen w-full bg-gradient-to-br from-indigo-100 via-white to-purple-200">
+  <div className="min-h-screen min-w-screen bg-gradient-to-br from-indigo-100 via-white to-purple-200">
     <Header />
     <CoinTable />
     {/* <CoinChart /> */}

@@ -17,7 +17,7 @@ const startHistoryCron = () => {
 };
 
 const getTop10Coinsafter30Min = () => {
-  cron.schedule('*/30 * * * *', async () => {
+  cron.schedule('*/5 * * * *', async () => {
     try {
       const { data } = await axios.get(
         'https://api.coingecko.com/api/v3/coins/markets',

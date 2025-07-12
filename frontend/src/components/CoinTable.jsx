@@ -39,27 +39,27 @@ const CoinTable = () => {
 
     fetchTopTenCoins(); 
 
-    const interval = setInterval(fetchTopTenCoins, 30*60*1000); 
+    const interval = setInterval(fetchTopTenCoins, 5*60*1000); 
 
     return () => clearInterval(interval); 
   }, []);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
-        <h2 className="text-xl  mx-auto  md:text-2xl font-bold text-center text-black-700 mb-6 w-fit bg-gray-200 p-2 rounded-xl">
+        <h2 className="text-base  mx-auto  md:text-2xl font-bold text-center text-black-700 mb-6 w-fit bg-gray-200 p-2 rounded-xl">
         Real-Time Top 10 Crypto Currency Tracker
     </h2>
 
       <div className="flex flex-col sm:flex-row justify-between gap-4 mb-4">
         <input
           type="text"
-          placeholder="🔍 Search coin by coin name and symbol..."
+          placeholder="🔍 Search by coin name or symbol..."
           className="px-4 py-2 border rounded w-full sm:w-1/2"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <div className="flex items-center  gap-3">
+        <div className="flex items-center justify-between gap-3">
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
