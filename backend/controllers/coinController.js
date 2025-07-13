@@ -54,6 +54,21 @@ const getTop10Coins = async (req, res) => {
 
 const saveHistorySnapshot = async (req, res) => {
   try {
+        
+    const historycoin = await HistoryCoin.find();
+
+   
+    if (historycoin.length > 0) {
+      const now = new Date();
+      const coinTimestamp = new Date(historycoin[0].timestamp);
+      const diffInMinutes = (now - coinTimestamp) / (1000 * 60); 
+
+      if (diffInMinutes <= 1) {
+        return res.status(200).json(historycoin); 
+      }
+    }
+
+
     const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
       params: {
         vs_currency: 'usd',
@@ -72,7 +87,7 @@ const saveHistorySnapshot = async (req, res) => {
       change24h: coin.price_change_percentage_24h,
       timestamp: new Date(),
     }));
-    await HistoryCoin.deleteMany({});
+    // await HistoryCoin.deleteMany({});
     await HistoryCoin.insertMany(historyData);
 
     res.status(201).json({ message: 'History saved successfully', count: historyData.length ,historyData});
