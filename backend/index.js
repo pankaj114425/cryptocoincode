@@ -9,7 +9,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json()); 
-app.use(cors())
+app.use(cors({
+  origin: 'https://cryptocoincode.vercel.app/', 
+  credentials: true,
+}));
+
 // Connect to MongoDB
 connectDB();
 
