@@ -73,7 +73,11 @@ The startHistoryCron function sets up a scheduled task using node-cron that runs
    the backend starts. You can change the frequency (e.g., every 5 minutes) by updating the cron expression.
 
 4. Links
-Frontend Link: https://cryptocoincode.vercel.app/
-backend Link:  https://cryptocoincode.onrender.com
+ i have used cors for connect backend to frontend both
+app.use(cors({
+  origin:  'https://cryptocoincode.vercel.app',
+  credentials: true
+}));
+
 
 
