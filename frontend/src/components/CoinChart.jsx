@@ -29,7 +29,7 @@ const CoinChart = () => {
     fetchHistory();
   }, [coinId]);
 
-  const formatted = history.map((entry) => ({
+  const formatted = history?.map((entry) => ({
     price: entry.price,
     time: new Date(entry.timestamp).toLocaleTimeString(),
   }));

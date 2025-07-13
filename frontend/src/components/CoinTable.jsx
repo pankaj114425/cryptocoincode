@@ -9,7 +9,6 @@ const CoinTable = () => {
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState(' ');
   const [sortOrder, setSortOrder] = useState('desc');
-  //  const [coins, setCoins] = useState([]);
   const {coins}=useCoins();
   const handleSortToggle = () => {
     setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');

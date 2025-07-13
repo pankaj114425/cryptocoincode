@@ -2,16 +2,24 @@ const axios = require('axios');
 const CurrentCoin = require('../models/currentCoinModel');
 const HistoryCoin = require('../models/historyCoinModel');
 
-//get the top 10 coin
+
 
 const getTop10Coins = async (req, res) => {
   try {
     const coins = await CurrentCoin.find();
-    if (coins.length > 0) {
-      return res.status(200).json(coins); 
-    }
 
    
+    if (coins.length > 0) {
+      const now = new Date();
+      const coinTimestamp = new Date(coins[0].timestamp);
+      const diffInMinutes = (now - coinTimestamp) / (1000 * 60); 
+
+      if (diffInMinutes <= 1) {
+        return res.status(200).json(coins); 
+      }
+    }
+
+    // Else fetch new data from API
     const { data } = await axios.get(
       'https://api.coingecko.com/api/v3/coins/markets',
       {
@@ -43,6 +51,7 @@ const getTop10Coins = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch coins' });
   }
 };
+
 const saveHistorySnapshot = async (req, res) => {
   try {
     const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
@@ -63,7 +72,7 @@ const saveHistorySnapshot = async (req, res) => {
       change24h: coin.price_change_percentage_24h,
       timestamp: new Date(),
     }));
-
+    await HistoryCoin.deleteMany({});
     await HistoryCoin.insertMany(historyData);
 
     res.status(201).json({ message: 'History saved successfully', count: historyData.length ,historyData});

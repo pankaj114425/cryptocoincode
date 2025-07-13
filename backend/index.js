@@ -3,7 +3,7 @@ const colors = require('colors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const cryptoRoutes = require('./routes/cryptoRoute');
-const {startHistoryCron,getTop10Coinsafter30Min} = require('./cron/crone');
+const {startHistoryCron} = require('./cron/crone');
 const cors = require('cors');
 dotenv.config(); 
 
@@ -15,7 +15,6 @@ connectDB();
 
 // Routes
 startHistoryCron()
-getTop10Coinsafter30Min()
 app.use('/api', cryptoRoutes);
 
 // Start server
