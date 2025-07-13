@@ -63,7 +63,7 @@ const saveHistorySnapshot = async (req, res) => {
       const coinTimestamp = new Date(historycoin[0].timestamp);
       const diffInMinutes = (now - coinTimestamp) / (1000 * 60); 
 
-      if (diffInMinutes <= 1) {
+      if (diffInMinutes <= 2) {
         return res.status(200).json(historycoin); 
       }
     }
